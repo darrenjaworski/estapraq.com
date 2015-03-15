@@ -1,12 +1,23 @@
 $(document).ready( function()	{
+    "use strict";
     $('.accordion-button').click( function(){
         $(this).toggleClass('open').next().stop().slideToggle();
     });
     $('.toggle').click(function(e){
         e.preventDefault();
-        $(this).toggleClass("active");
-        $('header').toggleClass("active");
-    })
+        $(this).toggleClass('active');
+        $('header').toggleClass('active');
+    });
+    $(window).scroll(function(){
+        var position = $(this).scrollTop();
+        var documentheight = $(document).height();
+
+        if (position < (documentheight / 2)) {
+            $('footer').css('z-index', -2);
+        } else {
+            $('footer').css('z-index', -1);
+        }
+    });
 
     // (function(){
     //
