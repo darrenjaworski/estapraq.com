@@ -1,0 +1,11 @@
+{
+  "name": "esta-com",
+  "private": true,
+  "dependencies": {
+    "jquery": "~1.11.1",
+    "d3": "~3.5.0"
+  },
+  "devDependencies": {
+    "d3": "~3.5.0"
+  }
+}

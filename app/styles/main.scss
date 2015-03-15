@@ -1,0 +1,389 @@
+// bower:scss
+// endbower
+@import 'partials/normalize';
+@import 'partials/utilities';
+@import 'partials/icomoon';
+
+@import 'compass';
+
+@import 'susy';
+
+/* colors */
+/* https://color.adobe.com/magnolia-color-theme-4696959/edit/?copy=true */
+$primary_color: #253943;
+$secondary_color: #828D86;
+$accent_color: #C0C1BC;
+$highlight_color: #A66A6D;
+$light_color: #D7DAD8;
+
+$green_color: #597372;
+
+$link_color: $accent_color;
+$hover_color: $secondary_color;
+
+$normal: $link_color;
+$hover: $hover_color;
+
+/* font */
+$font_color: darken($secondary_color, 30%);
+$font_family: 'Raleway', sans-serif;
+
+/* vertical rhythm */
+$base-font-size: 20px;
+$base-line-height: 30px;
+
+@include establish-baseline;
+
+/* other variables */
+$nav_border: 2px solid $normal;
+$spacing: 3em;
+$transparency: transparentize($primary_color, 0.1);
+
+$breakpoint: 'max-width: 40em';
+
+
+
+/* site wide */
+html, body {
+    color: $font_color !important;
+    font-family: $font_family;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: 1px;
+}
+
+a {
+    @include link-colors($normal, $hover);
+    text-decoration: none;
+    @include transition;
+}
+
+main a {
+    @include link-colors($font_color, $font_color);
+    &:hover {
+        background: lighten($primary_color, 40%);
+    }
+}
+
+.accessible {
+    @include accessible_hidden;
+}
+
+.container {
+    @include container(50em);
+    padding: 0 $spacing/2;
+}
+
+
+
+/* header + footer */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: $transparency;
+    z-index: 100;
+    @media ($breakpoint) {
+        &.active {
+            display: block;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            nav {
+                .branding {
+                    @include span(6 of 12);
+                }
+                ul {
+                    display: block !important;
+                    @include span(12 last of 12);
+                    li {
+                        display: block;
+                        @include span(12 last of 12);
+                        text-align: center;
+                        margin-top: 10%;
+                        + li {
+                            border-left: none;
+                            margin-left: 0;
+                            padding-left: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    nav {
+        @include span(12 last of 12);
+        .branding {
+            @include span(3 of 12);
+        }
+        @include box-sizing(border-box);
+        padding: .5em 0;
+        ul {
+            @include span(9 last of 12);
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-align: right;
+            li {
+                display: inline;
+                + li {
+                    border-left: $nav_border;
+                    margin-left: .5em;
+                    padding-left: .75em;
+                }
+            }
+            @media ($breakpoint) {
+                display: none;
+            }
+        }
+    }
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 1em 0;
+    z-index: -1;
+    background: $primary_color;
+    nav {
+        ul {
+            text-align: center;
+            padding: 0;
+            margin: 0;
+            li {
+                display: inline;
+                padding: 0 .25em;
+                margin: 0 .25em;
+            }
+        }
+    }
+}
+
+
+
+/* intro text */
+h1 {
+    text-align: center;
+    span {
+        background: $transparency;
+        padding: .25em .4em;
+        color: $light_color;
+        @media ($breakpoint) {
+            background: transparent;
+            line-height: 1em;
+        }
+    }
+}
+
+$hero_section_height: 35em;
+
+.vertical-align {
+    position: absolute;
+    width: 100%;
+    height: $hero_section_height;
+    display: table;
+    h1 {
+        display: table-cell;
+        vertical-align: middle;
+    }
+}
+
+
+
+/* main + sections */
+main {
+    margin-bottom: 3.5em;
+    z-index: 10;
+}
+
+section {
+    padding: $spacing 0;
+    z-index: 10;
+    > .container {
+        @include container(44em);
+    }
+    &.container {
+        @include container(44em);
+        padding: $spacing $spacing/2;
+    }
+    &.color-spanner {
+        background: $light_color;
+    }
+    &.white-spanner {
+        background: white;
+    }
+    &.background-spanner {
+        .parallax-background {
+            background-image: url('../images/esta-1.jpg');
+            background-position: center center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            position: fixed;
+            height: $hero_section_height;
+            width: 100%;
+            left: 0;
+            top: 0;
+            z-index: -1;
+        }
+        z-index: -1 !important;
+        margin: 0;
+        padding: 0;
+        min-height: $hero_section_height;
+        position: relative;
+    }
+}
+
+h2, h3, h4 {
+    padding: .25em;
+    padding-left: 0;
+    display: inline-block;
+}
+
+h2 {
+    border-bottom: 3px solid $highlight_color;
+}
+
+h3 {
+    border-right: 3px solid $highlight_color;
+}
+
+h4 {
+    border-bottom: 3px solid $highlight_color;
+    border-right: 3px solid $highlight_color;
+}
+
+img {
+    max-width: 80%;
+    @include box-sizing(border-box);
+    @media ($breakpoint) {
+        max-width: 100%;
+        width: 100%;
+        margin: 0 !important;
+        margin-bottom: 1em !important;
+    }
+    margin-bottom: 1em;
+    &.frame {
+        margin: 0 10%;
+        border: .5em solid $highlight_color;
+    }/*
+    &.right {
+        float: right;
+        padding-left: 1em;
+        margin-left: 1em;
+        border-left: 5px solid \$highlight_color;
+    }
+    &.left {
+        float: left;
+        padding-right: 1em;
+        margin-right: 1em;
+        border-right: 5px solid \$highlight_color;
+    } */
+}
+
+.accordion-button {
+    @include appearance(none);
+    @include transition;
+    display: block;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: .25em;
+    margin: 0;
+    margin-top: 1.5em;
+    padding-left: 0;
+    //border-right: 3px solid $highlight_color;
+    border-bottom: 3px solid $highlight_color;
+    position: relative;
+    text-align: left;
+    &:after {
+        content: "";
+        position: absolute;
+        top: .9em;
+        right: -1em;
+        width: .5em;
+        border-bottom: 3px solid transparent;
+        @include transition;
+    }
+    &.open {
+        &:after {
+            border-bottom: 3px solid $highlight_color;
+        }
+    }
+    &:hover {
+        border-bottom: 3px solid lighten($highlight_color, 20%);
+    }
+}
+.accordion-drawer {
+    display: none;
+    p {
+        margin: 0;
+        margin-top: .5em;
+    }
+}
+
+
+
+.toggle {
+    @media ($breakpoint){ //breakpoint of mobile
+        display: block;
+    }
+    display: none;
+    width: 2em;
+    height: 1.25em;
+    position: absolute;
+    right: $spacing/2;
+    top: .65em;
+    span {
+        position: absolute;
+        background-color: $normal; //color of the hamburger
+        height: .25em;
+        width: 100%;
+        @include transition; //uses compass
+        &:hover {
+            background-color: $hover;
+        }
+    }
+    .top {
+        top: 0;
+        @include rotate(0deg); //uses compass
+    }
+    .middle {
+        top: .5em;
+    }
+    .bottom {
+        top: 1em;
+        @include rotate(0deg);
+    }
+    &.active {
+        .top {
+            top: .5em;
+            @include rotate(-45deg);
+        }
+        .middle {
+            background-color: transparent;
+            z-index: -1;
+        }
+        .bottom {
+            top: .5em;
+            @include rotate(45deg);
+        }
+    }
+}
+
+
+//sine svg
+/* svg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.line path {
+    stroke-opacity: .8;
+    stroke: \$light_color;
+    fill: none;
+} */
