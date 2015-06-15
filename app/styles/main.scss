@@ -6,7 +6,7 @@
 
 @import 'compass';
 
-@import 'susy';
+@import '../../bower_components/susy/sass/susy';
 
 /* colors */
 /* https://color.adobe.com/magnolia-color-theme-4696959/edit/?copy=true */
@@ -139,7 +139,7 @@ header {
 }
 
 footer {
-    position: fixed;
+    position: relative;
     bottom: 0;
     width: 100%;
     padding: 1em 0;
@@ -150,9 +150,11 @@ footer {
             padding: 0;
             margin: 0;
             li {
-                display: inline;
-                padding: 0 .25em;
-                margin: 0 .25em;
+                display: inline-block;
+                a {
+                    padding: 0 .25em;
+                    margin: 0 .25em;
+                }
             }
         }
     }
@@ -190,10 +192,6 @@ $hero_section_height: 35em;
 
 
 /* main + sections */
-main {
-    margin-bottom: 3.5em;
-}
-
 section {
     padding: $spacing 0;
     > .container {
@@ -212,7 +210,7 @@ section {
     &.background-spanner {
         .parallax-background {
             background-image: url('../images/esta-1.jpg');
-            background-position: center center;
+            background-position: center top;
             background-size: cover;
             background-repeat: no-repeat;
             position: fixed;
@@ -383,8 +381,4 @@ header {
 
 .color-spanner, .white-spanner {
     z-index: 10;
-}
-
-footer {
-    z-index: -1;
 }

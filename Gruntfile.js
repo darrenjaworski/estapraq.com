@@ -163,8 +163,7 @@ module.exports = function (grunt) {
             httpGeneratedImagesPath: '../images/generated',
             httpFontsPath: 'fonts',
             relativeAssets: false,
-            assetCacheBuster: false,
-            require: 'susy'
+            assetCacheBuster: false
         },
         dist: {
             options: {
